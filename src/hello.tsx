@@ -1,21 +1,21 @@
 import React, {FC, useRef, useState} from 'react';
-import {MyComponent} from './MyComponent';
+import {ExposedMethods, MyComponent} from './MyComponent';
 
 type Props = {};
 
 export const Hello: FC<Props> = ({}) => {
-  const ref = useRef<HTMLDivElement | null>(null)
+    const ref = useRef<ExposedMethods | null>(null)
 
-  const [html, setHtml] = useState<string>()
+    const [html, setHtml] = useState<string>()
 
-  function getHtml() {
-    setHtml(ref.current?.outerHTML ?? '')
-  }
+    function getInnerValue() {
+        setHtml(ref.current?.innerValue ?? '')
+    }
 
-  return <div>
-    <MyComponent ref={ref} defaultValue={'react'}/>
-    <button onClick={() => getHtml()}>Get Html</button>
-    <hr/>
-    {html}
-  </div>;
+    return <div>
+        <MyComponent ref={ref} defaultValue={'react'}/>
+        <button onClick={() => getInnerValue()}>Get Inner Value</button>
+        <hr/>
+        {html}
+    </div>;
 }
